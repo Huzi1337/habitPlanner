@@ -1,10 +1,16 @@
 @use "./colors";
 
-@mixin align-content($direction: row, $main: flex-start, $cross: flex-start) {
+@mixin align-content(
+  $direction: row,
+  $main: flex-start,
+  $cross: flex-start,
+  $wrap: nowrap
+) {
   display: flex;
   flex-direction: $direction;
   justify-content: $main;
   align-items: $cross;
+  flex-wrap: $wrap;
 }
 
 @mixin center-row {

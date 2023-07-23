@@ -1,0 +1,6 @@
+@use "../assets/mixins";
+
+.task__row {
+  @include mixins.align-content();
+  gap: 16px;
+}

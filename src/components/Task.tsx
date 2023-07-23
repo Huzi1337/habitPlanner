@@ -1,16 +1,17 @@
 import Card from "./Card";
+import "./Task.scss";
 
 type Props = {
   tag: string;
   title: string;
   time?: string | null;
-  note: string;
+  note?: string | null;
   variant?: "active" | "inactive" | "outlined";
 };
 
 const Task = ({
   tag,
-  note,
+  note = null,
   title,
   time = null,
   variant = "inactive",
@@ -25,11 +26,11 @@ const Task = ({
     <Card variant={color}>
       <h4>{tag}</h4>
 
-      <div className="home__row">
+      <div className="task__row">
         <h3>{title}</h3>
-        {time != null && <h3>10:00</h3>}
+        {time != null && <h3>{time}</h3>}
       </div>
-      <h4>{note}</h4>
+      {note != null && <h4>{note}</h4>}
     </Card>
   );
 };

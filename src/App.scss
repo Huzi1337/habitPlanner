@@ -3,8 +3,8 @@
 @use "./assets/colors";
 
 .appScreen {
-  box-sizing: content-box;
-  padding: 25px 0;
+  position: relative;
+  padding: 25px 0 85px 38px;
   width: 100vw;
   max-width: 425px;
   height: 100vh;
@@ -15,6 +15,7 @@
   border-radius: 16px;
   overflow: hidden;
   @include mixins.align-content(column, flex-start, flex-start);
+  container-type: inline-size;
 }
 
 h1 {

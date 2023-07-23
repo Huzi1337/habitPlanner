@@ -1,6 +1,77 @@
 @use "../../assets/mixins";
+@use "../../assets/colors";
 
-.home__row {
+.home__todayTaskContainer {
   @include mixins.align-content();
+  max-width: 100%;
+  height: 75px;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.home__userContainer {
+  img {
+    width: 36px;
+    height: 36px;
+    border-radius: 45px;
+  }
+}
+
+.home__headerContainer {
+  padding-right: 38px;
+  width: 100%;
+  @include mixins.align-content(row, space-between, center);
+  button {
+    width: 24px;
+    height: 24px;
+    background-image: url(/icons/settings.svg);
+    background-size: cover;
+    background-color: transparent;
+    border: 0;
+    align-self: flex-start;
+    cursor: pointer;
+  }
+}
+
+.home__addButton {
+  @include mixins.align-content(row, center, center);
+
+  background-color: colors.$lime;
+  border-radius: 45px;
+  width: 60px;
+  height: 60px;
+  filter: drop-shadow(0px 0px 12px rgba(1, 70, 54, 0.2));
+  align-self: center;
+  margin: auto 0 60px -38px;
+}
+
+.home__habitContainer {
+  @include mixins.align-content($wrap: wrap);
   gap: 16px;
+}
+.home__tagSelection {
+  @include mixins.align-content(column-reverse);
+  background-color: colors.$grayGreen;
+  gap: 34px;
+  position: absolute;
+  padding: 20px 0;
+  left: 0;
+  bottom: 10%;
+  border-radius: 0px 16px 16px 0px;
+  button {
+    transform: rotate(-90deg) translateY(-10px);
+    margin-right: -10px;
+  }
+}
+
+.home__h2 {
+  margin-bottom: 20px;
+}
+
+.home__h3 {
+  margin-bottom: 8px;
+}
+
+.home__h4 {
+  margin-bottom: 4px;
 }

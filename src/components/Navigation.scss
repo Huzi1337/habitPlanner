@@ -1,0 +1,18 @@
+@use "../assets/mixins";
+
+.navigation__container {
+  @include mixins.align-content();
+  gap: 28px;
+  position: absolute;
+  bottom: 40px;
+  align-self: center;
+}
+
+.navigation__container.home {
+  margin-left: -38px;
+}
+
+.navigation {
+  @include mixins.center-column();
+  text-decoration: none;
+}
