@@ -1,0 +1,25 @@
+@use "./colors";
+
+@mixin align-content($direction: row, $main: flex-start, $cross: flex-start) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $main;
+  align-items: $cross;
+}
+
+@mixin center-row {
+  @include align-content(row, center, center);
+}
+
+@mixin center-column {
+  @include align-content(column, center, center);
+}
+
+@mixin set-font($size, $weight: 400) {
+  font-size: $size;
+  font-style: normal;
+  font-weight: $weight;
+  line-height: normal;
+  font-family: "Poppins";
+  color: colors.$black;
+}

@@ -1,0 +1,25 @@
+@use "../assets/colors";
+@use "../assets/mixins";
+
+.card {
+  @include mixins.align-content(column, flex-start, flex-start);
+  padding: 8px 16px;
+  gap: 2px;
+  border-radius: 8px;
+}
+
+.default {
+  background-color: colors.$gray;
+}
+
+.greenThumb {
+  background-color: colors.$green;
+}
+
+.lime {
+  background-color: colors.$lime;
+}
+
+.greenOutline {
+  background-color: 1px solid colors.$green2;
+}
