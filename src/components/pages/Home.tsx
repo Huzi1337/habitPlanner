@@ -5,6 +5,7 @@ import Task from "../Task";
 
 import "./Home.scss";
 import "react-indiana-drag-scroll/dist/style.css";
+import Button from "../Button";
 const Home = () => {
   return (
     <>
@@ -49,9 +50,7 @@ const Home = () => {
         <Task tag="BEAUTY" title="Become monkey"></Task>
         <Task tag="BEAUTY" title="Drink water"></Task>
       </div>
-      <div className="home__addButton">
-        <img src="/icons/plus.svg"></img>
-      </div>
+      <Button variant="add" onClick={() => {}}></Button>
     </>
   );
 };

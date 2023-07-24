@@ -7,6 +7,7 @@ type Props = {
   time?: string | null;
   note?: string | null;
   variant?: "active" | "inactive" | "outlined";
+  wide?: boolean | undefined;
 };
 
 const Task = ({
@@ -15,6 +16,7 @@ const Task = ({
   title,
   time = null,
   variant = "inactive",
+  wide,
 }: Props) => {
   const color =
     variant === "active"
@@ -23,7 +25,7 @@ const Task = ({
       ? "greenOutline"
       : "default";
   return (
-    <Card variant={color}>
+    <Card wide={wide} variant={color}>
       <h4>{tag}</h4>
 
       <div className="task__row">

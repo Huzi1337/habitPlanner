@@ -1,0 +1,27 @@
+@use "../../assets/mixins";
+
+.journal__header,
+.journal__optionSelect {
+  padding-right: 30px;
+  @include mixins.align-content($main: space-between);
+  width: 100%;
+}
+.journal__header {
+  padding-top: 30px;
+  margin-bottom: 30px;
+}
+
+.journal__optionSelect {
+  margin: 50px 0 30px;
+  button {
+    width: 50%;
+  }
+}
+
+.journal__itemContainer {
+  @include mixins.center-column;
+  padding-right: 30px;
+  gap: 10px;
+  width: 100%;
+  max-height: 322px;
+}

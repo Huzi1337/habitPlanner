@@ -33,34 +33,24 @@
   }
 }
 
-.home__addButton {
-  @include mixins.align-content(row, center, center);
-
-  background-color: colors.$lime;
-  border-radius: 45px;
-  width: 60px;
-  height: 60px;
-  filter: drop-shadow(0px 0px 12px rgba(1, 70, 54, 0.2));
-  align-self: center;
-  margin: auto 0 60px -38px;
-}
-
 .home__habitContainer {
   @include mixins.align-content($wrap: wrap);
   gap: 16px;
 }
 .home__tagSelection {
-  @include mixins.align-content(column-reverse);
+  @include mixins.align-content($main: space-around);
   background-color: colors.$grayGreen;
-  gap: 34px;
+  transform-origin: top left;
+  transform: rotate(-90deg);
   position: absolute;
-  padding: 20px 0;
+  width: 130%;
+  padding: 3px 40px 4px;
   left: 0;
   bottom: 10%;
-  border-radius: 0px 16px 16px 0px;
+  border-radius: 0px 0 16px 16px;
   button {
-    transform: rotate(-90deg) translateY(-10px);
-    margin-right: -10px;
+    background-color: transparent;
+    border: 0;
   }
 }
 

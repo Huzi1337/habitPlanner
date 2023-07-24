@@ -4,9 +4,14 @@ import showXdays from "../utils/showXdays";
 
 import "./WeekCalendar.scss";
 
-const WeekCalendar = () => {
+type Props = {
+  setSelectedDay: (day: dayjs.Dayjs) => void;
+  selectedDay: dayjs.Dayjs;
+};
+
+const WeekCalendar = ({ setSelectedDay, selectedDay }: Props) => {
   console.log(showXdays(dayjs(), 7));
-  const [selectedDay, setSelectedDay] = useState(dayjs());
+
   const [visibleDays, setVisibleDays] = useState(showXdays(dayjs(), 7));
   console.log("visible days", visibleDays);
   const nextDateHandler = () => {
@@ -26,7 +31,6 @@ const WeekCalendar = () => {
     ]);
   };
 
-  const daySelectHandler = (day: dayjs.Dayjs) => setSelectedDay(day);
   return (
     <div className="weekCalendar__wrapper">
       <button
@@ -36,7 +40,7 @@ const WeekCalendar = () => {
       {visibleDays.map((day, key) => (
         <button
           key={key}
-          onClick={() => daySelectHandler(day)}
+          onClick={() => setSelectedDay(day)}
           className={`weekCalendar__day ${
             selectedDay.isSame(day, "date") ? "active" : ""
           }`}
