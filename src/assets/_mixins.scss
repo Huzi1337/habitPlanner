@@ -29,3 +29,21 @@
   font-family: "Poppins";
   color: colors.$black;
 }
+
+@mixin adjust-background() {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@mixin hover() {
+  @keyframes enlarge {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+  animation: enlarge 0.2s ease-in;
+}

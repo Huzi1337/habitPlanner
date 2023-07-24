@@ -2,7 +2,10 @@
 @use "../assets/colors";
 
 .weekCalendar__wrapper {
-  @include mixins.align-content();
+  @include mixins.align-content($main: space-between);
+  width: 100%;
+  padding-right: 30px;
+  gap: 16px;
 }
 
 .weekCalendar__day {
@@ -11,6 +14,7 @@
   padding: 8px;
   border-radius: 8px;
   background-color: transparent;
+  min-width: 22px;
 }
 
 .weekCalendar__day.active {
@@ -19,6 +23,23 @@
 
 .weekCalendar__backBtn,
 .weekCalendar__nextBtn {
+  @include mixins.adjust-background();
+  border: 0;
+  background-color: transparent;
   width: 50px;
   height: 50px;
+}
+
+.weekCalendar__backBtn {
+  background-image: url(/icons/arrowLeft.svg);
+}
+
+.weekCalendar__nextBtn {
+  background-image: url(/icons/arrowRight.svg);
+}
+
+.weekCalendar__backBtn:hover,
+.weekCalendar__nextBtn:hover {
+  transform: scale(1.1);
+  @include mixins.hover();
 }

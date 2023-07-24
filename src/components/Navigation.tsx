@@ -3,20 +3,16 @@ import { NavLink, useLocation } from "react-router-dom";
 import "./Navigation.scss";
 
 const Navigation = () => {
-  const location = useLocation();
+  const { pathname } = useLocation();
   return (
-    <nav
-      className={`navigation__container ${
-        location.pathname === "/" ? "home" : ""
-      }`}
-    >
+    <nav className={`navigation__container`}>
       <NavLink
         to={"/"}
         className={({ isActive }) =>
           isActive ? "navigation active" : "navigation inactive"
         }
       >
-        <img src="/icons/home.svg"></img>
+        <img src={`/icons/home${pathname === "/" ? "Active" : ""}.svg`}></img>
         <h4>HOME</h4>
       </NavLink>
       <NavLink
@@ -25,7 +21,9 @@ const Navigation = () => {
           isActive ? "navigation active" : "navigation inactive"
         }
       >
-        <img src="/icons/journal.svg"></img>
+        <img
+          src={`/icons/journal${pathname === "/journal" ? "Active" : ""}.svg`}
+        ></img>
         <h4>JOURNAL</h4>
       </NavLink>
       <div className="navigation">
