@@ -1,0 +1,24 @@
+@use "../assets/mixins";
+@use "../assets/colors";
+
+.weekCalendar__wrapper {
+  @include mixins.align-content();
+}
+
+.weekCalendar__day {
+  @include mixins.align-content(column, space-between, center);
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: transparent;
+}
+
+.weekCalendar__day.active {
+  background-color: colors.$green;
+}
+
+.weekCalendar__backBtn,
+.weekCalendar__nextBtn {
+  width: 50px;
+  height: 50px;
+}
