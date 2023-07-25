@@ -52,6 +52,10 @@
     background-color: transparent;
     border: 0;
   }
+  button.active {
+    background-color: colors.$bottleGreen;
+    color: colors.$white;
+  }
 }
 
 .home__h2 {

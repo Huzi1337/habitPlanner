@@ -6,16 +6,28 @@ import Task from "../Task";
 import "./Home.scss";
 import "react-indiana-drag-scroll/dist/style.css";
 import Button from "../Button";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/reducers/rootReducer";
 const Home = () => {
+  const tags = useSelector((state: RootState) => state.tag);
+  const tasks = useSelector((state: RootState) => state.task.tasks);
+  const [selectedTag, setSelectedTag] = useState("");
+
+  const selectTagHandler = (tag: string) =>
+    setSelectedTag((prev) => (prev === tag ? "" : tag));
   return (
     <>
       <div className="home__tagSelection">
-        <button>Family</button>
-        <button>Sport</button>
-        <button>Business</button>
-        <button>House Duties</button>
-
-        <button>Medical</button>
+        {tags.map((tag, index) => (
+          <button
+            className={selectedTag === tag ? "active" : ""}
+            key={index}
+            onClick={() => selectTagHandler(tag)}
+          >
+            {tag}
+          </button>
+        ))}
       </div>
       <div className="home__headerContainer">
         <div className="home__userContainer">
@@ -28,18 +40,24 @@ const Home = () => {
       <h4 className="home__h4">{dayjs().format("ddd DD/MM/YYYY")}</h4>
       <h3 className="home__h3">Today tasks:</h3>
       <ScrollContainer className="home__todayTaskContainer">
-        <Task
-          tag="BUSINESS"
-          note="Don't forget to take notes!"
-          title="Big meeting"
-          time={"10:30"}
-        ></Task>
-        <Task
-          tag="BUSINESS"
-          note="Don't forget to take notes!"
-          title="Big meetingasdasdasdasdasdasdasdasdas"
-          time={"10:30"}
-        ></Task>
+        {tasks
+          .filter(({ date, tag }) =>
+            dayjs(date).isValid() &&
+            dayjs(date).isSame(dayjs(), "date") &&
+            selectedTag === ""
+              ? true
+              : selectedTag === tag
+          )
+          .map(({ tag, note, time, title }, key) => (
+            <Task
+              tag={tag}
+              title={title}
+              key={key}
+              note={note}
+              time={time}
+              wide={true}
+            ></Task>
+          ))}
       </ScrollContainer>
       <h3 className="home__h3">Habits:</h3>
       <div className="home__habitContainer">
