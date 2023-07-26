@@ -31,4 +31,5 @@ h3 {
 
 h4 {
   @include mixins.set-font(fonts.$h4, 300);
+  margin-bottom: 16px;
 }

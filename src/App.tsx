@@ -3,7 +3,7 @@ import "./App.scss";
 import Home from "./components/pages/Home";
 import RootLayout from "./components/RootLayout";
 import Journal from "./components/pages/Journal";
-import NewResponsibility from "./components/pages/NewResponsibility";
+import AddNew from "./components/pages/AddNew";
 
 const router = createBrowserRouter([
   {
@@ -13,8 +13,8 @@ const router = createBrowserRouter([
       { path: "/", element: <Home></Home> },
       { path: "/journal", element: <Journal></Journal> },
       {
-        path: "/responsibility",
-        element: <NewResponsibility></NewResponsibility>,
+        path: "/addNew/:activity",
+        element: <AddNew></AddNew>,
       },
     ],
   },

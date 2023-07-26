@@ -1,0 +1,91 @@
+@use "../../assets/mixins";
+@use "../../assets/fonts";
+@use "../../assets/colors";
+
+.addNew__header {
+  @include mixins.align-content($main: space-between);
+  width: 100%;
+  padding-right: 38px;
+  margin: 0 0 30px;
+  button {
+    font-size: fonts.$h3;
+  }
+  h3 {
+    font-weight: 500;
+  }
+  button.addNew__header__colored {
+    color: colors.$green2;
+    font-weight: 500;
+  }
+}
+
+.addNew__titleInput,
+.addNew__notes {
+  width: calc(100% - 38px);
+  border-radius: 8px;
+  border: 1px solid colors.$gray;
+  background: colors.$white;
+  font-size: fonts.$h3;
+}
+
+.addNew__titleInput:focus-visible,
+.addNew__notes:focus-visible {
+  outline: 0;
+  border-color: colors.$bottleGreen;
+}
+
+.addNew__titleInput {
+  margin-bottom: 15px;
+  padding: 4px 8px;
+}
+
+.addNew__notes {
+  padding: 8px 16px;
+  height: 144px;
+}
+
+.addNew__categoryContainer {
+  @include mixins.align-content($wrap: wrap);
+  margin-bottom: 15px;
+  gap: 8px;
+  .addNew__categoryButton {
+    font-size: fonts.$h3;
+    border-radius: 8px;
+    padding: 8px 16px;
+    background-color: colors.$gray;
+  }
+  .addNew__categoryButton.active {
+    border: 1px solid colors.$bottleGreen;
+    padding: 7px 15px;
+  }
+  .addNew__categoryButton.newCategory {
+    cursor: not-allowed;
+  }
+}
+
+.mantine-DatePickerInput-root {
+  margin-bottom: 16px;
+}
+
+.mantine-DatePickerInput-wrapper {
+  .calendar {
+    margin-bottom: 3px;
+  }
+}
+
+.mantine-DatePickerInput-input {
+  font-family: "Poppins";
+  font-size: fonts.$h3;
+  border-radius: 8px;
+  border-color: colors.$gray;
+}
+
+.mantine-1d4lrir[data-with-icon] {
+  padding-left: 2.5rem;
+}
+
+.mantine-Popover-dropdown {
+  width: calc(100% - 76px) !important;
+  top: 325px !important;
+  border-radius: 16px;
+}
