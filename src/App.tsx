@@ -29,8 +29,16 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className="appScreen">
-      <RouterProvider router={router}></RouterProvider>
+    <div className="phone__borderOuter2">
+      <div className="phone__borderOuter">
+        <div className="phone__borderInner2">
+          <div className="phone__borderInner">
+            <div className="appScreen">
+              <RouterProvider router={router}></RouterProvider>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

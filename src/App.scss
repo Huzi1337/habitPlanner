@@ -4,17 +4,58 @@
 
 .appScreen {
   position: relative;
-  padding: 25px 0 85px 38px;
+  padding: 38px 0 85px 38px;
   width: 100vw;
   max-width: 425px;
   height: 100vh;
   max-height: 844px;
-  border: 2px colors.$lime solid;
+
   background-color: #fff;
   margin: 0 auto;
-  border-radius: 16px;
   overflow: hidden;
   @include mixins.align-content(column, flex-start, flex-start);
+}
+
+@media (min-width: 457px) {
+  .appScreen {
+    border-radius: 30px;
+    padding-top: 0;
+
+    &:before {
+      width: 105px;
+      height: 25px;
+      margin: 10px auto 10px 32.5%;
+      border-radius: 13px;
+      background: #040404;
+      content: " ";
+    }
+  }
+  .phone__borderOuter2 {
+    @include mixins.phone-layer-color(#787471, 4px);
+    box-shadow: 0px -10px 60px 10px rgba(255, 255, 255, 0.8);
+  }
+
+  .phone__borderOuter {
+    @include mixins.phone-layer-color(#b2b1ad, 3px);
+  }
+
+  .phone__borderInner2 {
+    @include mixins.phone-layer-color(#353430, 3px);
+  }
+
+  .phone__borderInner {
+    @include mixins.phone-layer-color(#030202, 6px);
+  }
+
+  .phone__cameraContainer {
+    width: 72px;
+    height: 21px;
+    border-radius: 13px;
+    background: #040404;
+  }
+
+  .phone__camera {
+  }
 }
 
 .appScreen:has(.landing__wrapper) {

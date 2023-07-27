@@ -43,6 +43,14 @@
   border-color: $color;
 }
 
+@mixin phone-layer-color($color, $width, $radius: 40px) {
+  width: max-content;
+  height: max-content;
+  border: $width solid $color;
+  background-color: $color;
+  border-radius: $radius;
+}
+
 @mixin hover() {
   @keyframes enlarge {
     0% {

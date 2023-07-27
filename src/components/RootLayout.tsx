@@ -5,6 +5,7 @@ const RootLayout = () => {
   const { pathname } = useLocation();
   return (
     <>
+      {/* <div className="topInformation"></div> */}
       <Outlet></Outlet>
       {pathname !== "/" && <Navigation></Navigation>}
     </>
