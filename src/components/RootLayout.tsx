@@ -1,11 +1,12 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navigation from "./Navigation";
 
 const RootLayout = () => {
+  const { pathname } = useLocation();
   return (
     <>
       <Outlet></Outlet>
-      <Navigation></Navigation>
+      {pathname !== "/" && <Navigation></Navigation>}
     </>
   );
 };

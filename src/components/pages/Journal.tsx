@@ -8,6 +8,7 @@ import Button from "../Button";
 import { RootState } from "../../store/reducers/rootReducer";
 import { useSelector } from "react-redux";
 import ScrollContainer from "react-indiana-drag-scroll";
+import { useNavigate } from "react-router-dom";
 
 const Journal = () => {
   const tasks = useSelector((state: RootState) => state.task.tasks);
@@ -15,11 +16,14 @@ const Journal = () => {
     "tasks"
   );
   const [selectedDay, setSelectedDay] = useState(dayjs());
+  const navigate = useNavigate();
 
   const daySelectHandler = (day: dayjs.Dayjs) => setSelectedDay(day);
 
   const selectSectionHandler = (section: "habits" | "tasks") =>
     setSelectedSection(section);
+
+  console.log("Tasks", tasks);
 
   return (
     <>
@@ -62,7 +66,12 @@ const Journal = () => {
             ></Task>
           ))}
       </ScrollContainer>
-      <Button variant="add" onClick={() => {}}></Button>
+      <Button
+        variant="add"
+        onClick={() => {
+          navigate(`/journal/addNew/${selectedSection}`);
+        }}
+      ></Button>
     </>
   );
 };

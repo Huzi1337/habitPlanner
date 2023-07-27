@@ -10,13 +10,9 @@ type Props = {
 };
 
 const WeekCalendar = ({ setSelectedDay, selectedDay }: Props) => {
-  console.log(showXdays(dayjs(), 7));
-
   const [visibleDays, setVisibleDays] = useState(showXdays(dayjs(), 7));
-  console.log("visible days", visibleDays);
   const nextDateHandler = () => {
     return setVisibleDays((previous) => {
-      console.log("lastPrevious", [previous[previous.length - 1]]);
       return [
         ...previous.slice(1),
         dayjs().set("date", previous[previous.length - 1].get("date") + 1),

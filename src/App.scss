@@ -10,11 +10,20 @@
   height: 100vh;
   max-height: 844px;
   border: 2px colors.$lime solid;
-  background-color: colors.$white;
+  background-color: #fff;
   margin: 0 auto;
   border-radius: 16px;
   overflow: hidden;
   @include mixins.align-content(column, flex-start, flex-start);
+}
+
+.appScreen:has(.landing__wrapper) {
+  background-color: colors.$grayGreen;
+  padding: 42px 50px 42px 30px;
+}
+
+.disabled {
+  cursor: not-allowed !important;
 }
 
 h1 {
@@ -31,5 +40,4 @@ h3 {
 
 h4 {
   @include mixins.set-font(fonts.$h4, 300);
-  margin-bottom: 16px;
 }

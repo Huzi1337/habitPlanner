@@ -2,6 +2,8 @@
 @use "../../assets/fonts";
 @use "../../assets/colors";
 
+$containerWidth: calc(100% - 38px);
+
 .addNew__header {
   @include mixins.align-content($main: space-between);
   width: 100%;
@@ -17,15 +19,35 @@
     color: colors.$green2;
     font-weight: 500;
   }
+  button {
+    cursor: pointer;
+  }
+  button:hover {
+    transform: scale(1.05);
+    transition: 0.2s;
+    filter: saturate(1.25);
+  }
+}
+
+.addNew__label {
+  margin-bottom: 16px;
+}
+
+.addNew__label.error {
+  @include mixins.error($size: fonts.$h4);
 }
 
 .addNew__titleInput,
 .addNew__notes {
-  width: calc(100% - 38px);
+  width: $containerWidth;
   border-radius: 8px;
   border: 1px solid colors.$gray;
   background: colors.$white;
   font-size: fonts.$h3;
+}
+
+.addNew__titleInput.error {
+  @include mixins.error();
 }
 
 .addNew__titleInput:focus-visible,
@@ -40,8 +62,10 @@
 }
 
 .addNew__notes {
+  width: $containerWidth;
   padding: 8px 16px;
   height: 144px;
+  resize: none;
 }
 
 .addNew__categoryContainer {
@@ -63,20 +87,32 @@
   }
 }
 
+.addNew__error {
+  @include mixins.error();
+}
+
 .mantine-DatePickerInput-root {
   margin-bottom: 16px;
 }
 
 .mantine-DatePickerInput-wrapper {
+  line-height: normal;
   .calendar {
     margin-bottom: 3px;
   }
+}
+.mantine-InputWrapper-error {
+  font-family: "Poppins";
 }
 
 .mantine-DatePickerInput-input {
   font-family: "Poppins";
   font-size: fonts.$h3;
   border-radius: 8px;
+  border-color: colors.$gray;
+}
+
+.mantine-DatePickerInput-input:focus {
   border-color: colors.$gray;
 }
 

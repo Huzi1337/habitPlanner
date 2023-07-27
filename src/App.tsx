@@ -4,16 +4,23 @@ import Home from "./components/pages/Home";
 import RootLayout from "./components/RootLayout";
 import Journal from "./components/pages/Journal";
 import AddNew from "./components/pages/AddNew";
+import Landing from "./components/pages/Landing";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout></RootLayout>,
     children: [
-      { path: "/", element: <Home></Home> },
+      { path: "/", element: <Landing></Landing> },
+
+      { path: "/home", element: <Home></Home> },
       { path: "/journal", element: <Journal></Journal> },
       {
-        path: "/addNew/:activity",
+        path: "/home/addNew/:activity",
+        element: <AddNew></AddNew>,
+      },
+      {
+        path: "/journal/addNew/:activity",
         element: <AddNew></AddNew>,
       },
     ],

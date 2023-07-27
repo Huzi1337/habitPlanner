@@ -4,7 +4,6 @@
 .card {
   @include mixins.align-content(column, flex-start, flex-start);
   padding: 8px 16px;
-  gap: 2px;
   border-radius: 8px;
   min-width: max-content;
 }

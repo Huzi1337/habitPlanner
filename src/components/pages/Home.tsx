@@ -1,18 +1,20 @@
 import dayjs from "dayjs";
 import ScrollContainer from "react-indiana-drag-scroll";
-
+import "react-indiana-drag-scroll/dist/style.css";
 import Task from "../Task";
 
 import "./Home.scss";
-import "react-indiana-drag-scroll/dist/style.css";
+
 import Button from "../Button";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducers/rootReducer";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
   const tags = useSelector((state: RootState) => state.tag);
   const tasks = useSelector((state: RootState) => state.task.tasks);
   const [selectedTag, setSelectedTag] = useState("");
+  const navigate = useNavigate();
 
   const selectTagHandler = (tag: string) =>
     setSelectedTag((prev) => (prev === tag ? "" : tag));
@@ -68,7 +70,10 @@ const Home = () => {
         <Task tag="BEAUTY" title="Become monkey"></Task>
         <Task tag="BEAUTY" title="Drink water"></Task>
       </div>
-      <Button variant="add" onClick={() => {}}></Button>
+      <Button
+        variant="add"
+        onClick={() => navigate("/home/addNew/task")}
+      ></Button>
     </>
   );
 };

@@ -2,7 +2,7 @@
 @use "../../assets/colors";
 
 .home__todayTaskContainer {
-  @include mixins.align-content();
+  @include mixins.align-content($cross: center);
   max-width: 100%;
   height: 75px;
   gap: 14px;

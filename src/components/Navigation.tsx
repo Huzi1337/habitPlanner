@@ -4,25 +4,29 @@ import "./Navigation.scss";
 
 const Navigation = () => {
   const { pathname } = useLocation();
+  const rootPath = pathname.split("/")[1];
+  console.log(pathname.split("/"));
   return (
     <nav className={`navigation__container`}>
       <NavLink
-        to={"/"}
-        className={({ isActive }) =>
-          isActive ? "navigation active" : "navigation inactive"
+        to={"/home"}
+        className={
+          rootPath === "home" ? "navigation active" : "navigation inactive"
         }
       >
-        <img src={`/icons/home${pathname === "/" ? "Active" : ""}.svg`}></img>
+        <img
+          src={`/icons/home${rootPath === "home" ? "Active" : ""}.svg`}
+        ></img>
         <h4>HOME</h4>
       </NavLink>
       <NavLink
         to={"/journal"}
-        className={({ isActive }) =>
-          isActive ? "navigation active" : "navigation inactive"
+        className={
+          rootPath === "journal" ? "navigation active" : "navigation inactive"
         }
       >
         <img
-          src={`/icons/journal${pathname === "/journal" ? "Active" : ""}.svg`}
+          src={`/icons/journal${rootPath === "journal" ? "Active" : ""}.svg`}
         ></img>
         <h4>JOURNAL</h4>
       </NavLink>

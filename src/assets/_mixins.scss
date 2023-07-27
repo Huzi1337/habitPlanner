@@ -30,10 +30,17 @@
   color: colors.$black;
 }
 
-@mixin adjust-background() {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+@mixin adjust-background($size: cover, $repeat: no-repeat, $position: center) {
+  background-size: $size;
+  background-repeat: $repeat;
+  background-position: $position;
+}
+
+@mixin error($color: #fa5252, $size: 14px, $marginBot: 10px) {
+  color: $color;
+  font-size: $size;
+  margin-bottom: $marginBot;
+  border-color: $color;
 }
 
 @mixin hover() {
