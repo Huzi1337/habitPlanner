@@ -5,18 +5,27 @@ const INITIAL_STATE: HabitInitialState = {
   habits: [
     {
       tag: "Family",
-      title: "Jimmy's wedding",
-      note: "Don't forget the GIFT!",
+      title: "Read my daugther a bedtime story",
     },
     {
       tag: "Family",
-      title: "Jimmy's wedding",
-      note: "Don't forget the GIFT!",
+      title: "Watch a movie",
     },
     {
-      tag: "Family",
-      title: "Jimmy's wedding",
-      note: "Don't forget the GIFT!",
+      tag: "Business",
+      title: "Do market research",
+    },
+    {
+      tag: "Sport",
+      title: "Work out",
+    },
+    {
+      tag: "Business",
+      title: "Meet with partners",
+    },
+    {
+      tag: "Medical",
+      title: "Check blood pressure",
     },
   ],
 };

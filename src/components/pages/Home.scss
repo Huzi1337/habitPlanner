@@ -4,7 +4,7 @@
 .home__todayTaskContainer {
   @include mixins.align-content($cross: center);
   max-width: 100%;
-  height: 75px;
+  min-height: 75px;
   gap: 14px;
   margin-bottom: 18px;
 }
@@ -36,6 +36,8 @@
 .home__habitContainer {
   @include mixins.align-content($wrap: wrap);
   gap: 16px;
+  margin-bottom: 10px;
+  min-height: 57px;
 }
 .home__tagSelection {
   @include mixins.align-content($main: space-around);

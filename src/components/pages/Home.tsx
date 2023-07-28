@@ -11,8 +11,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducers/rootReducer";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
-  const tags = useSelector((state: RootState) => state.tag);
-  const tasks = useSelector((state: RootState) => state.task.tasks);
+  const {
+    tag: tags,
+    task: { tasks },
+    habit: { habits },
+  } = useSelector((state: RootState) => state);
   const [selectedTag, setSelectedTag] = useState("");
   const navigate = useNavigate();
 
@@ -62,14 +65,15 @@ const Home = () => {
           ))}
       </ScrollContainer>
       <h3 className="home__h3">Habits:</h3>
-      <div className="home__habitContainer">
-        <Task tag="BEAUTY" title="Skin care routine"></Task>
-        <Task tag="BEAUTY" title="Meditation"></Task>
-        <Task tag="BEAUTY" title="Drink water"></Task>
-        <Task tag="BEAUTY" title="Inject gold"></Task>
-        <Task tag="BEAUTY" title="Become monkey"></Task>
-        <Task tag="BEAUTY" title="Drink water"></Task>
-      </div>
+      <ScrollContainer className="home__habitContainer">
+        {habits
+          .filter(({ tag }) =>
+            selectedTag === "" ? true : selectedTag === tag
+          )
+          .map(({ tag, title }, index) => (
+            <Task tag={tag} title={title} key={index}></Task>
+          ))}
+      </ScrollContainer>
       <Button
         variant="add"
         onClick={() => navigate("/home/addNew/task")}
