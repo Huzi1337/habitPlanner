@@ -6,9 +6,11 @@ type Props = {
   children: React.ReactNode;
 };
 
-const Card = ({ variant = "default", wide, children }: Props) => {
+const Card = ({ variant = "default", wide, children, ...props }: Props) => {
   return (
-    <div className={`card ${variant} ${wide ? "wide" : ""}`}>{children}</div>
+    <div {...props} className={`card ${variant} ${wide ? "wide" : ""}`}>
+      {children}
+    </div>
   );
 };
 

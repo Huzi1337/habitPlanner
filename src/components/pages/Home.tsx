@@ -11,11 +11,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducers/rootReducer";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
-  const {
-    tag: tags,
-    task: { tasks },
-    habit: { habits },
-  } = useSelector((state: RootState) => state);
+  const tags = useSelector((state: RootState) => state.tag);
+  const { habits } = useSelector((state: RootState) => state.habit);
+  const { tasks } = useSelector((state: RootState) => state.task);
   const [selectedTag, setSelectedTag] = useState("");
   const navigate = useNavigate();
 
@@ -36,7 +34,7 @@ const Home = () => {
       </div>
       <div className="home__headerContainer">
         <div className="home__userContainer">
-          <img src="/margotrobbie.jpg" alt="User Avatar"></img>
+          <img src="/avatar.png" alt="User Avatar"></img>
           <h3>Hi, Margot</h3>
         </div>
         <button></button>
@@ -53,8 +51,9 @@ const Home = () => {
               ? true
               : selectedTag === tag
           )
-          .map(({ tag, note, time, title }, key) => (
+          .map(({ tag, note, time, title, date }, key) => (
             <Task
+              date={date}
               tag={tag}
               title={title}
               key={key}

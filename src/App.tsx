@@ -5,6 +5,10 @@ import RootLayout from "./components/RootLayout";
 import Journal from "./components/pages/Journal";
 import AddNew from "./components/pages/AddNew";
 import Landing from "./components/pages/Landing";
+import { useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import dayjs from "dayjs";
+import { setClock } from "./store/reducers/clockReducer";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +32,24 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const timeoutRef = useRef<number | undefined>(undefined);
+  const dispatch = useDispatch();
+
+  const updateCurrentDate = () => {
+    const currentTime = dayjs();
+    dispatch(setClock(currentTime.toISOString()));
+
+    const msUntilNextMinute = 60000 - currentTime.second() * 1000;
+    timeoutRef.current = setTimeout(updateCurrentDate, msUntilNextMinute);
+  };
+
+  useEffect(() => {
+    updateCurrentDate();
+
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
   return (
     <div className="phone__borderOuter2">
       <div className="phone__borderOuter">

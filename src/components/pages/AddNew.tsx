@@ -44,8 +44,16 @@ const AddNew = () => {
   const submitHandler = () => {
     form.validate();
     if (form.isValid()) {
+      const [hours, minutes] = form.values.time.split(":");
+      console.log("Got [hour, minute]", [+hours, +minutes]);
       dispatch(
-        addTask({ ...form.values, date: dayjs(form.values.date).toISOString() })
+        addTask({
+          ...form.values,
+          date: dayjs(form.values.date)
+            .set("hour", +hours)
+            .set("minute", +minutes)
+            .toISOString(),
+        })
       );
       cancelHandler();
     }

@@ -21,7 +21,8 @@
 }
 
 .greenOutline {
-  background-color: 1px solid colors.$green2;
+  border: 1px solid colors.$green2;
+  background-color: colors.$gray;
 }
 .wide {
   width: 100%;
