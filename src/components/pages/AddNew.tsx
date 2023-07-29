@@ -1,6 +1,5 @@
-import { TextInput } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import "./AddNew.scss";
 import { useDispatch, useSelector } from "react-redux";
