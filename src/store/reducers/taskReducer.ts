@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ITask, TaskInitialState } from "../../types/reducers";
 import dayjs from "dayjs";
 import isSameorBefore from "dayjs/plugin/isSameOrBefore";
+import getCurrentActivity from "../../utils/getCurrentActivity";
 dayjs.extend(isSameorBefore);
 
 const INITIAL_STATE: TaskInitialState = {
@@ -74,17 +75,9 @@ const taskSlice = createSlice({
       return state;
     },
     setActiveTask(state) {
-      state.current = (state.tasks as ITask[]).reduce((activeTask, task) => {
-        const taskDate = dayjs(task.date);
-        const activeTaskDate = dayjs(activeTask.date);
-        const now = dayjs();
-        if (
-          taskDate.isSameOrBefore(now, "minute") &&
-          taskDate.isAfter(activeTaskDate, "minute")
-        )
-          return task;
-        return activeTask;
-      }).id;
+      state.current = (state.tasks as ITask[]).reduce(
+        (activeTask, task) => getCurrentActivity(activeTask, task) as ITask
+      ).id;
       return state;
     },
   },

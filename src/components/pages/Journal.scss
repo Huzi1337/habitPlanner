@@ -14,6 +14,9 @@
 .journal__optionSelect {
   margin: 50px 0 30px;
   button {
+    border: 1px solid colors.$green;
+
+    box-sizing: border-box;
     width: 50%;
     padding: 8px 60px;
     h3 {
@@ -21,17 +24,15 @@
     }
   }
   .active {
-    border: 0;
     background-color: colors.$green;
   }
   .inactive {
-    border: 1px solid colors.$green;
     background-color: transparent;
   }
 }
 
 .journal__itemContainer {
-  @include mixins.center-column;
+  @include mixins.align-content($direction: column);
   padding-right: 30px;
   gap: 10px;
   width: 100%;

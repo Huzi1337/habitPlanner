@@ -11,7 +11,7 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import { useNavigate } from "react-router-dom";
 
 const Journal = () => {
-  const tasks = useSelector((state: RootState) => state.task.tasks);
+  const { tasks, current } = useSelector((state: RootState) => state.task);
   const [selectedSection, setSelectedSection] = useState<"tasks" | "habits">(
     "tasks"
   );
@@ -22,8 +22,6 @@ const Journal = () => {
 
   const selectSectionHandler = (section: "habits" | "tasks") =>
     setSelectedSection(section);
-
-  console.log("Tasks", tasks);
 
   return (
     <>
@@ -55,13 +53,16 @@ const Journal = () => {
             ({ date }) =>
               dayjs(date).isValid() && dayjs(date).isSame(selectedDay, "date")
           )
-          .map(({ tag, note, time, title }, key) => (
+          .map(({ tag, note, title, date, id, isCheckedOff }, key) => (
             <Task
+              id={id}
+              isCheckedOff={isCheckedOff}
+              current={current}
+              date={date}
               tag={tag}
               title={title}
               key={key}
               note={note}
-              time={time}
               wide={true}
             ></Task>
           ))}

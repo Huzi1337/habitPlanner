@@ -3,11 +3,12 @@ export interface IResponsibility {
   tag: string;
   title: string;
   note?: string;
+  date: string | null;
 }
 
 export interface ITask extends IResponsibility {
   time: string;
-  date: string | null;
+
   isCheckedOff: boolean;
 }
 
@@ -17,5 +18,6 @@ export type TaskInitialState = {
 };
 
 export type HabitInitialState = {
+  current: number;
   habits: [] | IResponsibility[];
 };

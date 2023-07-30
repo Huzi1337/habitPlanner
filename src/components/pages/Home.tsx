@@ -10,10 +10,15 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducers/rootReducer";
 import { useNavigate } from "react-router-dom";
+import sortActivities from "../../utils/sortActivities";
 const Home = () => {
   const tags = useSelector((state: RootState) => state.tag);
-  const { habits } = useSelector((state: RootState) => state.habit);
-  const { tasks, current } = useSelector((state: RootState) => state.task);
+  const { habits, current: currentHabit } = useSelector(
+    (state: RootState) => state.habit
+  );
+  const { tasks, current: currentTask } = useSelector(
+    (state: RootState) => state.task
+  );
   const [selectedTag, setSelectedTag] = useState("");
   const navigate = useNavigate();
 
@@ -51,10 +56,10 @@ const Home = () => {
               ? true
               : selectedTag === tag
           )
-          .sort((a, b) => dayjs(a.date).diff(b.date))
+          .sort((a, b) => sortActivities(a, b, currentTask))
           .map(({ tag, note, title, date, id, isCheckedOff }, key) => (
             <Task
-              current={current}
+              current={currentTask}
               id={id}
               date={date}
               tag={tag}
@@ -72,8 +77,12 @@ const Home = () => {
           .filter(({ tag }) =>
             selectedTag === "" ? true : selectedTag === tag
           )
-          .map(({ tag, title }, index) => (
+          .sort((a, b) => sortActivities(a, b, currentHabit))
+          .map(({ tag, title, date, id }, index) => (
             <Task
+              current={currentHabit}
+              id={id}
+              date={date}
               isCheckedOff={false}
               displayTime={false}
               tag={tag}
