@@ -56,7 +56,6 @@ const Home = () => {
               ? true
               : selectedTag === tag
           )
-          .sort((a, b) => sortActivities(a, b, currentTask))
           .map(({ tag, note, title, date, id, isCheckedOff }, key) => (
             <Task
               current={currentTask}
@@ -77,7 +76,6 @@ const Home = () => {
           .filter(({ tag }) =>
             selectedTag === "" ? true : selectedTag === tag
           )
-          .sort((a, b) => sortActivities(a, b, currentHabit))
           .map(({ tag, title, date, id }, index) => (
             <Task
               current={currentHabit}

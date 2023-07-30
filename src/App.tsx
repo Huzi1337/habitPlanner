@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import dayjs from "dayjs";
 import { setClock } from "./store/reducers/clockReducer";
 import { setActiveTask } from "./store/reducers/taskReducer";
+import { setActiveHabit } from "./store/reducers/habitReducer";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,7 @@ function App() {
     const currentTime = dayjs();
     dispatch(setClock(currentTime.toISOString()));
     dispatch(setActiveTask());
+    dispatch(setActiveHabit());
 
     const msUntilNextMinute = 60000 - currentTime.second() * 1000;
     timeoutRef.current = setTimeout(updateCurrentDate, msUntilNextMinute);

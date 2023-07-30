@@ -3,6 +3,7 @@ import { ITask, TaskInitialState } from "../../types/reducers";
 import dayjs from "dayjs";
 import isSameorBefore from "dayjs/plugin/isSameOrBefore";
 import getCurrentActivity from "../../utils/getCurrentActivity";
+import sortActivities from "../../utils/sortActivities";
 dayjs.extend(isSameorBefore);
 
 const INITIAL_STATE: TaskInitialState = {
@@ -78,6 +79,7 @@ const taskSlice = createSlice({
       state.current = (state.tasks as ITask[]).reduce(
         (activeTask, task) => getCurrentActivity(activeTask, task) as ITask
       ).id;
+      state.tasks.sort((a, b) => sortActivities(a, b, state.current));
       return state;
     },
   },

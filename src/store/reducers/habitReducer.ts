@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { HabitInitialState, IResponsibility } from "../../types/reducers";
 import dayjs from "dayjs";
 import getCurrentActivity from "../../utils/getCurrentActivity";
+import sortActivities from "../../utils/sortActivities";
 
 const INITIAL_STATE: HabitInitialState = {
   current: 0,
@@ -53,9 +54,12 @@ const habitSlice = createSlice({
       state.current = (state.habits as IResponsibility[]).reduce(
         (activeHabit, habit) => getCurrentActivity(activeHabit, habit)
       ).id;
+      state.habits.sort((a, b) => sortActivities(a, b, state.current));
       return state;
     },
   },
 });
+
+export const { setActiveHabit } = habitSlice.actions;
 
 export default habitSlice.reducer;
