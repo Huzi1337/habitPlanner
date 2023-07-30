@@ -4,12 +4,11 @@ export interface IResponsibility {
   title: string;
   note?: string;
   date: string | null;
+  isCheckedOff: boolean;
 }
 
 export interface ITask extends IResponsibility {
   time: string;
-
-  isCheckedOff: boolean;
 }
 
 export type TaskInitialState = {

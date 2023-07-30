@@ -57,6 +57,7 @@ const Home = () => {
           )
           .map(({ tag, note, title, date, id, isCheckedOff }, key) => (
             <Task
+              variant="task"
               current={currentTask}
               id={id}
               date={date}
@@ -75,12 +76,13 @@ const Home = () => {
           .filter(({ tag }) =>
             selectedTag === "" ? true : selectedTag === tag
           )
-          .map(({ tag, title, date, id }, index) => (
+          .map(({ tag, title, date, id, isCheckedOff }, index) => (
             <Task
+              variant="habit"
               current={currentHabit}
               id={id}
               date={date}
-              isCheckedOff={false}
+              isCheckedOff={isCheckedOff}
               displayTime={false}
               tag={tag}
               title={title}

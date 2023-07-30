@@ -2,5 +2,19 @@
 
 .task__row {
   @include mixins.align-content();
+  width: 100%;
   gap: 16px;
+
+  .task__checkOffBtn {
+    @include mixins.adjust-background();
+    margin-left: auto;
+    width: 16px;
+    height: 16px;
+  }
+  .task__checkOffBtn.pending {
+    background-image: url(/icons/error.svg);
+  }
+  .task__checkOffBtn.done {
+    background-image: url(/icons/done.svg);
+  }
 }

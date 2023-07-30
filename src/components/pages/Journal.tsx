@@ -55,6 +55,7 @@ const Journal = () => {
           )
           .map(({ tag, note, title, date, id, isCheckedOff }, key) => (
             <Task
+              variant="task"
               id={id}
               isCheckedOff={isCheckedOff}
               current={current}

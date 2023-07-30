@@ -82,9 +82,14 @@ const taskSlice = createSlice({
       state.tasks.sort((a, b) => sortActivities(a, b, state.current));
       return state;
     },
+    checkOffTask(state, action: PayloadAction<number>) {
+      const taskId = state.tasks.findIndex(({ id }) => id === action.payload);
+      state.tasks[taskId].isCheckedOff = !state.tasks[taskId].isCheckedOff;
+      return state;
+    },
   },
 });
 
-export const { addTask, setActiveTask } = taskSlice.actions;
+export const { addTask, setActiveTask, checkOffTask } = taskSlice.actions;
 
 export default taskSlice.reducer;

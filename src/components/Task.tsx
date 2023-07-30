@@ -1,9 +1,12 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Card from "./Card";
 import "./Task.scss";
 import { RootState } from "../store/reducers/rootReducer";
 import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
+import { checkOffTask } from "../store/reducers/taskReducer";
+import { Tooltip } from "@mantine/core";
+import { checkOffHabit } from "../store/reducers/habitReducer";
 dayjs.extend(isBetween);
 
 type Props = {
@@ -16,9 +19,11 @@ type Props = {
   wide?: boolean | undefined;
   isCheckedOff: boolean;
   displayTime?: boolean;
+  variant: "task" | "habit";
 };
 
 const Task = ({
+  variant,
   tag,
   note = null,
   title,
@@ -27,10 +32,14 @@ const Task = ({
   current,
   wide,
   displayTime = true,
+  isCheckedOff,
 }: Props) => {
   const currentTime = useSelector((state: RootState) => state.clock);
-
-  console.log(date, dayjs(currentTime).isBefore(date));
+  const dispatch = useDispatch();
+  const taskCheckOffHandler = () => {
+    if (variant === "task") dispatch(checkOffTask(id));
+    else if (variant === "habit") dispatch(checkOffHabit(id));
+  };
   const color =
     id === current
       ? "greenThumb"
@@ -39,7 +48,25 @@ const Task = ({
       : "default";
   return (
     <Card wide={wide} variant={color}>
-      <h4>{tag}</h4>
+      <div className="task__row">
+        <h4>{tag}</h4>
+        {color === "default" && (
+          <Tooltip
+            label={
+              isCheckedOff
+                ? "You confirmed completing this activity."
+                : "You have not confirmed completing this activity."
+            }
+          >
+            <button
+              onClick={taskCheckOffHandler}
+              className={`task__checkOffBtn ${
+                isCheckedOff ? "done" : "pending"
+              }`}
+            ></button>
+          </Tooltip>
+        )}
+      </div>
 
       <div className="task__row">
         <h3>{title}</h3>
