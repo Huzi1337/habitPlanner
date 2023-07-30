@@ -32,7 +32,6 @@ const TimePicker = ({
 
   const isOpenHandler = () =>
     setIsOpen((previous) => {
-      console.log("isOpen change");
       return !previous;
     });
 

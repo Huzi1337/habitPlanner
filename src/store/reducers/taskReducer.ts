@@ -1,54 +1,65 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ITask, TaskInitialState } from "../../types/reducers";
 import dayjs from "dayjs";
+import isSameorBefore from "dayjs/plugin/isSameOrBefore";
+dayjs.extend(isSameorBefore);
 
 const INITIAL_STATE: TaskInitialState = {
+  current: 0,
   tasks: [
     {
+      id: 0,
       tag: "Family",
       title: "Jimmy's wedding",
       note: "Don't forget the GIFT!",
       time: "10:30",
       date: dayjs().toISOString(),
+      isCheckedOff: false,
     },
     {
+      id: 1,
       tag: "Family",
       title: "Jimmy's wedding",
       note: "Don't forget the GIFT!",
       time: "10:30",
-      date: dayjs().toISOString(),
+      date: dayjs().add(1, "minute").toISOString(),
+      isCheckedOff: false,
     },
     {
+      id: 2,
       tag: "Family",
       title: "Jimmy's wedding",
       note: "Don't forget the GIFT!",
       time: "10:30",
-      date: dayjs().toISOString(),
+      date: dayjs().add(2, "minute").toISOString(),
+      isCheckedOff: false,
     },
     {
+      id: 3,
       tag: "Family",
       title: "Jimmy's wedding",
       note: "Don't forget the GIFT!",
       time: "10:30",
-      date: dayjs().toISOString(),
+      date: dayjs().subtract(10, "minute").toISOString(),
+      isCheckedOff: false,
     },
     {
+      id: 4,
       tag: "Family",
       title: "Jimmy's wedding",
       note: "Don't forget the GIFT!",
       time: "10:30",
-      date: dayjs()
-        .set("date", dayjs().get("date") + 1)
-        .toISOString(),
+      date: dayjs().add(1, "hour").toISOString(),
+      isCheckedOff: false,
     },
     {
+      id: 5,
       tag: "Family",
       title: "Jimmy's wedding",
       note: "Don't forget the GIFT!",
       time: "10:30",
-      date: dayjs()
-        .set("date", dayjs().get("date") - 1)
-        .toISOString(),
+      date: dayjs().add(2, "hour").toISOString(),
+      isCheckedOff: false,
     },
   ],
 };
@@ -59,12 +70,26 @@ const taskSlice = createSlice({
   reducers: {
     addTask(state, action: PayloadAction<ITask>) {
       state.tasks = [...state.tasks, action.payload];
-      console.log("Adding a task", state.tasks);
+      console.log(JSON.stringify(state.tasks));
+      return state;
+    },
+    setActiveTask(state) {
+      state.current = (state.tasks as ITask[]).reduce((activeTask, task) => {
+        const taskDate = dayjs(task.date);
+        const activeTaskDate = dayjs(activeTask.date);
+        const now = dayjs();
+        if (
+          taskDate.isSameOrBefore(now, "minute") &&
+          taskDate.isAfter(activeTaskDate, "minute")
+        )
+          return task;
+        return activeTask;
+      }).id;
       return state;
     },
   },
 });
 
-export const { addTask } = taskSlice.actions;
+export const { addTask, setActiveTask } = taskSlice.actions;
 
 export default taskSlice.reducer;

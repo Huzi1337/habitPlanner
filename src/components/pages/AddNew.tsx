@@ -15,22 +15,30 @@ const AddNew = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { tasks } = useSelector((state: RootState) => state.task);
 
   const [category, setCategory] = useState("");
 
   const form = useForm<ITask>({
     initialValues: {
+      id: tasks.length,
       title: "",
       tag: "",
       date: null,
       time: "",
       note: "",
+      isCheckedOff: false,
     },
     validate: {
       tag: (value) => (value.length > 0 ? null : "Choose a tag!"),
       date: (value) => (value ? null : "Pick a date!"),
       title: (value) => (value.length > 0 ? null : "Choose a title!"),
-      time: (value) => (value.length > 0 ? null : "Pick a time!"),
+      time: (value) =>
+        value.length > 0
+          ? tasks.some(({ date }) => dayjs(date).format("HH:mm") === value)
+            ? "You already have a task scheduled at this time."
+            : null
+          : "Pick a time!",
     },
   });
   const setCategoryHandler = (tag: string) => {
@@ -108,6 +116,7 @@ const AddNew = () => {
         size="md"
         placeholder="Pick Date"
         valueFormat="DD/MM/YYYY"
+        minDate={new Date()}
       ></DatePickerInput>
       <h4 className="addNew__label">Time</h4>
       <TimePicker form={form}></TimePicker>

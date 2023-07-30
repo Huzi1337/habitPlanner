@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const tags = useSelector((state: RootState) => state.tag);
   const { habits } = useSelector((state: RootState) => state.habit);
-  const { tasks } = useSelector((state: RootState) => state.task);
+  const { tasks, current } = useSelector((state: RootState) => state.task);
   const [selectedTag, setSelectedTag] = useState("");
   const navigate = useNavigate();
 
@@ -51,15 +51,18 @@ const Home = () => {
               ? true
               : selectedTag === tag
           )
-          .map(({ tag, note, time, title, date }, key) => (
+          .sort((a, b) => dayjs(a.date).diff(b.date))
+          .map(({ tag, note, title, date, id, isCheckedOff }, key) => (
             <Task
+              current={current}
+              id={id}
               date={date}
               tag={tag}
               title={title}
               key={key}
               note={note}
-              time={time}
               wide={true}
+              isCheckedOff={isCheckedOff}
             ></Task>
           ))}
       </ScrollContainer>
@@ -70,7 +73,13 @@ const Home = () => {
             selectedTag === "" ? true : selectedTag === tag
           )
           .map(({ tag, title }, index) => (
-            <Task tag={tag} title={title} key={index}></Task>
+            <Task
+              isCheckedOff={false}
+              displayTime={false}
+              tag={tag}
+              title={title}
+              key={index}
+            ></Task>
           ))}
       </ScrollContainer>
       <Button
