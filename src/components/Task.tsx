@@ -26,7 +26,6 @@ const Task = ({
   id,
   current,
   wide,
-  isCheckedOff = false,
   displayTime = true,
 }: Props) => {
   const currentTime = useSelector((state: RootState) => state.clock);

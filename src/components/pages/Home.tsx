@@ -10,7 +10,6 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducers/rootReducer";
 import { useNavigate } from "react-router-dom";
-import sortActivities from "../../utils/sortActivities";
 const Home = () => {
   const tags = useSelector((state: RootState) => state.tag);
   const { habits, current: currentHabit } = useSelector(
