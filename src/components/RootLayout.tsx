@@ -2,6 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Navigation from "./Navigation";
 import MobileTop from "./MobileTop";
 import { useEffect, useState } from "react";
+import Notification from "./Notification";
 
 const RootLayout = () => {
   const { pathname } = useLocation();
@@ -22,6 +23,7 @@ const RootLayout = () => {
   return (
     <>
       {windowWidth >= 457 && <MobileTop></MobileTop>}
+      <Notification></Notification>
       <Outlet></Outlet>
       {pathname !== "/" && <Navigation></Navigation>}
     </>

@@ -1,0 +1,13 @@
+@use "../assets/colors";
+
+.mantine-Notification-root {
+  position: absolute;
+  width: calc(100% - 76px);
+  background-color: colors.$gray;
+  top: 45px;
+  height: 70px;
+}
+
+.mantine-Notification-root::before {
+  background-color: colors.$green;
+}
