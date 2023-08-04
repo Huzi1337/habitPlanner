@@ -73,3 +73,12 @@
   bottom: 0;
   right: 20px;
 }
+
+.appScreen {
+  background-color: colors.$grayGreen;
+  padding: 42px 50px 42px 30px;
+  &:before {
+    position: absolute;
+    top: 0;
+  }
+}

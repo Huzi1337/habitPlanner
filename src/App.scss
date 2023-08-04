@@ -54,14 +54,15 @@
     border-radius: 13px;
     background: #040404;
   }
-
-  .phone__camera {
-  }
 }
 
 .appScreen:has(.landing__wrapper) {
   background-color: colors.$grayGreen;
   padding: 42px 50px 42px 30px;
+  &:before {
+    position: absolute;
+    top: 0;
+  }
 }
 
 .disabled {
