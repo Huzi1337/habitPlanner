@@ -2,8 +2,14 @@
 @use "../../assets/mixins";
 
 .landing__wrapper {
-  width: 100%;
-  height: 100%;
+  padding: 55px 50px 42px 30px;
+  background-color: colors.$grayGreen;
+  overflow: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
 }
 
 .landing__topDecoration {
@@ -72,13 +78,4 @@
 .landing__buttonContainer__botStar {
   bottom: 0;
   right: 20px;
-}
-
-.appScreen {
-  background-color: colors.$grayGreen;
-  padding: 42px 50px 42px 30px;
-  &:before {
-    position: absolute;
-    top: 0;
-  }
 }
