@@ -64,6 +64,7 @@ $containerWidth: calc(100% - 38px);
 .addNew__notes {
   width: $containerWidth;
   padding: 8px 16px;
+  min-height: 70px;
   height: 144px;
   resize: none;
 }

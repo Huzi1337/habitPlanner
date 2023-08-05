@@ -3,9 +3,9 @@
 .navigation__container {
   @include mixins.align-content();
   gap: 28px;
-  position: absolute;
-  bottom: 40px;
+  position: sticky;
   align-self: center;
+  margin-top: auto;
   margin-left: -38px;
 }
 

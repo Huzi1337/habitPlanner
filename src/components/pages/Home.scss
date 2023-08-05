@@ -3,8 +3,9 @@
 
 .home__todayTaskContainer {
   @include mixins.align-content($cross: center);
-  max-width: 100%;
+  max-width: calc(100% - 1px);
   min-height: 75px;
+  padding-right: 10px;
   gap: 14px;
   margin-bottom: 18px;
   .card {
@@ -49,7 +50,7 @@
   transform-origin: top left;
   transform: rotate(-90deg);
   position: absolute;
-  width: 130%;
+  width: 470px;
   padding: 3px 40px 4px;
   left: 0;
   bottom: 10%;
