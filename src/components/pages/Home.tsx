@@ -12,12 +12,14 @@ import { RootState } from "../../store/reducers/rootReducer";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
   const tags = useSelector((state: RootState) => state.tag);
+  const now = dayjs();
   const { habits, current: currentHabit } = useSelector(
     (state: RootState) => state.habit
   );
   const { tasks, current: currentTask } = useSelector(
     (state: RootState) => state.task
   );
+
   const [selectedTag, setSelectedTag] = useState("");
   const navigate = useNavigate();
 
@@ -44,13 +46,13 @@ const Home = () => {
         <button></button>
       </div>
       <h2 className="home__h2">Let's plan together</h2>
-      <h4 className="home__h4">{dayjs().format("ddd DD/MM/YYYY")}</h4>
+      <h4 className="home__h4">{now.format("ddd DD/MM/YYYY")}</h4>
       <h3 className="home__h3">Today tasks:</h3>
       <ScrollContainer className="home__todayTaskContainer">
         {tasks
           .filter(({ date, tag }) =>
             dayjs(date).isValid() &&
-            dayjs(date).isSame(dayjs(), "date") &&
+            dayjs(date).isSame(now, "date") &&
             selectedTag === ""
               ? true
               : selectedTag === tag
@@ -73,15 +75,17 @@ const Home = () => {
       <h3 className="home__h3">Habits:</h3>
       <ScrollContainer className="home__habitContainer">
         {habits
-          .filter(({ tag }) =>
-            selectedTag === "" ? true : selectedTag === tag
+          .filter(
+            ({ tag, dayOfTheWeek }) =>
+              (selectedTag === "" ? true : selectedTag === tag) &&
+              now.get("day") === dayOfTheWeek
           )
-          .map(({ tag, title, date, id, isCheckedOff }, index) => (
+          .map(({ tag, title, time, id, isCheckedOff }, index) => (
             <Task
               variant="habit"
               current={currentHabit}
               id={id}
-              date={date}
+              time={time}
               isCheckedOff={isCheckedOff}
               displayTime={false}
               tag={tag}

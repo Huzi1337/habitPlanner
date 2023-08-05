@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { HabitInitialState, IResponsibility } from "../../types/reducers";
+import { HabitInitialState, IHabit, ValidTime } from "../../types/reducers";
 import dayjs from "dayjs";
-import getCurrentActivity from "../../utils/getCurrentActivity";
-import sortActivities from "../../utils/sortActivities";
+import getCurrentHabit from "../../utils/getCurrentHabit";
+import sortHabits from "../../utils/sortHabits";
 
 const INITIAL_STATE: HabitInitialState = {
   current: 0,
@@ -11,42 +11,53 @@ const INITIAL_STATE: HabitInitialState = {
       id: 0,
       tag: "Family",
       title: "Read my daughter a bedtime story",
-      date: dayjs().toISOString(),
+      dayOfTheWeek: dayjs().get("day"),
+      time: dayjs().format("HH:mm") as ValidTime,
       isCheckedOff: false,
     },
     {
       id: 1,
       tag: "Family",
       title: "Watch a movie",
-      date: dayjs().subtract(5, "hour").toISOString(),
+      dayOfTheWeek: dayjs().get("day"),
+
+      time: dayjs().subtract(5, "hour").format("HH:mm") as ValidTime,
       isCheckedOff: false,
     },
     {
       id: 2,
       tag: "Business",
       title: "Do market research",
-      date: dayjs().subtract(3, "hour").toISOString(),
+      dayOfTheWeek: dayjs().get("day"),
+
+      time: dayjs().subtract(3, "hour").format("HH:mm") as ValidTime,
       isCheckedOff: false,
     },
     {
       id: 3,
       tag: "Sport",
       title: "Work out",
-      date: dayjs().add(10, "minute").toISOString(),
+      dayOfTheWeek: dayjs().get("day"),
+
+      time: dayjs().add(10, "minute").format("HH:mm") as ValidTime,
       isCheckedOff: false,
     },
     {
       id: 4,
       tag: "Business",
       title: "Meet with partners",
-      date: dayjs().add(2, "hour").toISOString(),
+      dayOfTheWeek: dayjs().get("day"),
+
+      time: dayjs().add(2, "hour").format("HH:mm") as ValidTime,
       isCheckedOff: false,
     },
     {
       id: 5,
       tag: "Medical",
       title: "Check blood pressure",
-      date: dayjs().add(4, "hour").toISOString(),
+      dayOfTheWeek: dayjs().get("day"),
+
+      time: dayjs().add(4, "hour").format("HH:mm") as ValidTime,
       isCheckedOff: false,
     },
   ],
@@ -57,10 +68,10 @@ const habitSlice = createSlice({
   initialState: INITIAL_STATE,
   reducers: {
     setActiveHabit(state) {
-      state.current = (state.habits as IResponsibility[]).reduce(
-        (activeHabit, habit) => getCurrentActivity(activeHabit, habit)
+      state.current = (state.habits as IHabit[]).reduce((activeHabit, habit) =>
+        getCurrentHabit(activeHabit, habit)
       ).id;
-      state.habits.sort((a, b) => sortActivities(a, b, state.current));
+      state.habits.sort((a, b) => sortHabits(a, b, state.current));
       return state;
     },
     checkOffHabit(state, action: PayloadAction<number>) {

@@ -7,13 +7,16 @@ import isBetween from "dayjs/plugin/isBetween";
 import { checkOffTask } from "../store/reducers/taskReducer";
 import { Tooltip } from "@mantine/core";
 import { checkOffHabit } from "../store/reducers/habitReducer";
+import { ValidTime } from "../types/reducers";
+import convertTimeToMinutes from "../utils/convertTimeToMinutes";
 dayjs.extend(isBetween);
 
 type Props = {
   tag: string;
   title: string;
-  date: string | null;
+  date?: string | null;
   note?: string | null;
+  time?: ValidTime;
   id: number;
   current: number;
   wide?: boolean | undefined;
@@ -27,12 +30,13 @@ const Task = ({
   tag,
   note = null,
   title,
-  date,
+  date = null,
   id,
   current,
   wide,
   displayTime = true,
   isCheckedOff,
+  time,
 }: Props) => {
   const currentTime = useSelector((state: RootState) => state.clock);
   const dispatch = useDispatch();
@@ -40,10 +44,14 @@ const Task = ({
     if (variant === "task") dispatch(checkOffTask(id));
     else if (variant === "habit") dispatch(checkOffHabit(id));
   };
+
   const color =
     id === current
       ? "greenThumb"
-      : dayjs(currentTime).isBefore(date)
+      : (date && dayjs(currentTime).isBefore(date)) ||
+        (time &&
+          convertTimeToMinutes(dayjs().format("HH:mm") as ValidTime) <
+            convertTimeToMinutes(time as ValidTime))
       ? "greenOutline"
       : "default";
   return (
@@ -70,7 +78,7 @@ const Task = ({
 
       <div className="task__row">
         <h3 className={`task__title ${variant}`}>{title}</h3>
-        {displayTime && <h3>{dayjs(date).format("HH:mm")}</h3>}
+        {displayTime && <h3>{date ? dayjs(date).format("HH:mm") : time}</h3>}
       </div>
       {note != null && <h4>{note}</h4>}
     </Card>

@@ -1,10 +1,7 @@
 import dayjs from "dayjs";
-import { IResponsibility, ITask } from "../types/reducers";
+import { ITask } from "../types/reducers";
 
-const getCurrentActivity = (
-  activeTask: ITask | IResponsibility,
-  task: ITask | IResponsibility
-) => {
+const getCurrentTask = (activeTask: ITask, task: ITask) => {
   const taskDate = dayjs(task.date);
   const activeTaskDate = dayjs(activeTask.date);
   const now = dayjs();
@@ -16,4 +13,4 @@ const getCurrentActivity = (
   return activeTask;
 };
 
-export default getCurrentActivity;
+export default getCurrentTask;

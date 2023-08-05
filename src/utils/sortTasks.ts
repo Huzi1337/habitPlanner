@@ -1,11 +1,7 @@
 import dayjs from "dayjs";
-import { IResponsibility } from "../types/reducers";
+import { ITask } from "../types/reducers";
 
-const sortActivities = (
-  a: IResponsibility,
-  b: IResponsibility,
-  currentActive: number
-) => {
+const sortTasks = (a: ITask, b: ITask, currentActive: number) => {
   if (a.id === currentActive) {
     return -1;
   } else if (b.id === currentActive) {
@@ -16,11 +12,7 @@ const sortActivities = (
   const dateB = dayjs(b.date);
   const now = dayjs();
 
-  if (
-    dateA.isBefore(now, "minute") ||
-    dateA.isSame(now, "minute") ||
-    a.id === currentActive
-  ) {
+  if (dateA.isBefore(now, "minute") || dateA.isSame(now, "minute")) {
     return 1;
   } else if (dateB.isBefore(now, "minute") || dateB.isSame(now, "minute")) {
     return -1;
@@ -29,4 +21,4 @@ const sortActivities = (
   }
 };
 
-export default sortActivities;
+export default sortTasks;

@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ITask, TaskInitialState } from "../../types/reducers";
 import dayjs from "dayjs";
 import isSameorBefore from "dayjs/plugin/isSameOrBefore";
-import getCurrentActivity from "../../utils/getCurrentActivity";
-import sortActivities from "../../utils/sortActivities";
+import getCurrentTask from "../../utils/getCurrentTask";
+import sortTasks from "../../utils/sortTasks";
 dayjs.extend(isSameorBefore);
 
 const INITIAL_STATE: TaskInitialState = {
@@ -77,9 +77,9 @@ const taskSlice = createSlice({
     },
     setActiveTask(state) {
       state.current = (state.tasks as ITask[]).reduce(
-        (activeTask, task) => getCurrentActivity(activeTask, task) as ITask
+        (activeTask, task) => getCurrentTask(activeTask, task) as ITask
       ).id;
-      state.tasks.sort((a, b) => sortActivities(a, b, state.current));
+      state.tasks.sort((a, b) => sortTasks(a, b, state.current));
       return state;
     },
     checkOffTask(state, action: PayloadAction<number>) {
