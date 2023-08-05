@@ -4,7 +4,7 @@
 
 .appScreen {
   position: relative;
-  padding: 38px 0 85px 38px;
+  padding: 38px 0 10px 38px;
   width: 100vw;
   max-width: 425px;
   height: 100vh;
@@ -12,7 +12,8 @@
 
   background-color: #fff;
   margin: 0 auto;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   @include mixins.align-content(column, flex-start, flex-start);
 }
 

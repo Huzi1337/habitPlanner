@@ -69,7 +69,7 @@ const Task = ({
       </div>
 
       <div className="task__row">
-        <h3>{title}</h3>
+        <h3 className={`task__title ${variant}`}>{title}</h3>
         {displayTime && <h3>{dayjs(date).format("HH:mm")}</h3>}
       </div>
       {note != null && <h4>{note}</h4>}

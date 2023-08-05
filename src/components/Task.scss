@@ -18,3 +18,11 @@
     background-image: url(/icons/done.svg);
   }
 }
+
+@media (max-width: 355px) {
+  .task__row {
+    .task__title.habit {
+      max-width: 200px;
+    }
+  }
+}
