@@ -33,12 +33,12 @@ const AddNew = () => {
       tag: (value) => (value.length > 0 ? null : "Choose a tag!"),
       date: (value) => (value ? null : "Pick a date!"),
       title: (value) => (value.length > 0 ? null : "Choose a title!"),
-      time: (value) =>
+      time: (value, values) =>
         value.length > 0
           ? tasks.some(
               ({ date }) =>
                 dayjs(date).format("HH:mm") === value &&
-                dayjs(date).isSame(form.values.date, "date")
+                dayjs(date).isSame(values.date, "date")
             )
             ? "You already have a task scheduled at this time."
             : null
