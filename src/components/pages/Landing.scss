@@ -79,3 +79,9 @@
   bottom: 0;
   right: 20px;
 }
+
+@media (max-width: 350px) {
+  .landing__wrapper {
+    padding: 55px 30px 42px 10px;
+  }
+}
