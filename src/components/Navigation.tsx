@@ -5,7 +5,6 @@ import "./Navigation.scss";
 const Navigation = () => {
   const { pathname } = useLocation();
   const rootPath = pathname.split("/")[1];
-  console.log(pathname.split("/"));
   return (
     <nav className={`navigation__container`}>
       <NavLink

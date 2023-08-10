@@ -95,7 +95,7 @@ const Home = () => {
           ))}
       </ScrollContainer>
       <Button
-        variant="add"
+        variant="add tasks"
         onClick={() => navigate("/home/addNew/task")}
       ></Button>
     </>

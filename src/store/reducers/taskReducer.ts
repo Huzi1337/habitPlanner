@@ -72,7 +72,6 @@ const taskSlice = createSlice({
   reducers: {
     addTask(state, action: PayloadAction<ITask>) {
       state.tasks = [...state.tasks, action.payload];
-      console.log(JSON.stringify(state.tasks));
       return state;
     },
     setActiveTask(state) {

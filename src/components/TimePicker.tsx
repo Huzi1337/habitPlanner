@@ -7,7 +7,7 @@ import "./TimePicker.scss";
 
 import useClickOutside from "../hooks/useClickOutside";
 import { UseFormReturnType } from "@mantine/form";
-import { ITask } from "../types/reducers";
+import { ITask, ValidTime } from "../types/reducers";
 
 const hours = Array.from({ length: 24 }, (_, index) => index + "");
 const minutes = Array.from({ length: 60 }, (_, index) =>
@@ -37,7 +37,7 @@ const TimePicker = ({
 
   const setTimeHandler = () => {
     const chosenTime = `${hour}:${minute}`;
-    form.setFieldValue("time", chosenTime);
+    form.setFieldValue("time", chosenTime as ValidTime);
     setTime(chosenTime);
     isOpenHandler();
   };

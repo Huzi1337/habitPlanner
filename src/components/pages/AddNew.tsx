@@ -35,7 +35,11 @@ const AddNew = () => {
       title: (value) => (value.length > 0 ? null : "Choose a title!"),
       time: (value) =>
         value.length > 0
-          ? tasks.some(({ date }) => dayjs(date).format("HH:mm") === value)
+          ? tasks.some(
+              ({ date }) =>
+                dayjs(date).format("HH:mm") === value &&
+                dayjs(date).isSame(form.values.date, "date")
+            )
             ? "You already have a task scheduled at this time."
             : null
           : "Pick a time!",
@@ -53,7 +57,6 @@ const AddNew = () => {
     form.validate();
     if (form.isValid()) {
       const [hours, minutes] = form.values.time.split(":");
-      console.log("Got [hour, minute]", [+hours, +minutes]);
       dispatch(
         addTask({
           ...form.values,
